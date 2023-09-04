@@ -1,0 +1,20 @@
+		ORG 100
+	Load	Y
+	Store	Cnt
+Mul,	Load	Sum
+	Add	X
+	Store	Sum
+	Load	Cnt
+	Subt	One
+	Store	Cnt
+	SkipCond	400
+	Jump	Mul
+	Load	Sum
+	Output
+	Halt
+Cnt,	Dec	0
+X,	Dec	5
+Y,	Dec	6
+Sum,	Dec	0
+One,	Dec	1
+	End

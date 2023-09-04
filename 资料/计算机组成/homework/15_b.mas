@@ -1,0 +1,17 @@
+	ORG 100		/ 15(b)
+If,	Load	X
+	Subt	One
+	Skipcond	800
+	Jump	Endif
+Then,	Load	X
+	Add	X
+	Store	Y
+	Clear
+	Store	X
+Endif,	Load	Y
+	Add	One
+	Store	Y
+	Halt
+X,	Dec	12
+Y,	Dec	5
+One,	Dec	1

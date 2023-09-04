@@ -1,0 +1,36 @@
+     Assembly listing for: 15_b.mas
+                Assembled: Mon Oct 24 15:23:53 CST 2022
+
+         |         ORG 100          / 15(b)
+100 110D |  If     LOAD X            
+101 410F |         SUBT One          
+102 8800 |         SKIPCOND 800      
+103 9109 |         JUMP Endif        
+104 110D |  Then   LOAD X            
+105 310D |         ADD X             
+106 210E |         STORE Y           
+107 A000 |         CLEAR             
+108 210D |         STORE X           
+109 110E |  Endif  LOAD Y            
+10A 310F |         ADD One           
+10B 210E |         STORE Y           
+10C 7000 |         HALT              
+10D 000C |  X      DEC 12            
+10E 0005 |  Y      DEC 5             
+10F 0001 |  One    DEC 1             
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          Endif  |   109   | 103
+          If     |   100   | 
+          One    |   10F   | 101, 10A
+          Then   |   104   | 
+          X      |   10D   | 100, 104, 105, 108
+          Y      |   10E   | 106, 109, 10B
+         --------------------------------------------------
+
+
