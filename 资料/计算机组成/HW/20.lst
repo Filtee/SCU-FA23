@@ -1,0 +1,37 @@
+     Assembly listing for: 20.mas
+                Assembled: Mon Oct 24 15:44:14 CST 2022
+
+         |         ORG 100           
+100 110A |         LOAD A            
+101 2108 |         STORE X           
+102 110B |         LOAD B            
+103 2109 |         STORE Y           
+104 010C |         JNS Sub           
+105 1108 |         LOAD X            
+106 6000 |         OUTPUT            
+107 7000 |         HALT              
+108 0000 |  X      DEC 0             
+109 0000 |  Y      DEC 0             
+10A 0008 |  A      DEC 8             
+10B 0004 |  B      DEC 4             
+10C 0000 |  Sub    HEX 0             
+10D 1108 |         LOAD X            
+10E 4109 |         SUBT Y            
+10F 2108 |         STORE X           
+110 C10C |         JUMPI Sub         
+         |         END               
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          A      |   10A   | 100
+          B      |   10B   | 102
+          Sub    |   10C   | 104, 110
+          X      |   108   | 101, 105, 10D, 10F
+          Y      |   109   | 103, 10E
+         --------------------------------------------------
+
+

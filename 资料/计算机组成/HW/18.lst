@@ -1,0 +1,41 @@
+     Assembly listing for: 18.mas
+                Assembled: Mon Oct 24 15:58:09 CST 2022
+
+         |          ORG 100            
+100 1112 |          LOAD One          /Load constant
+101 2111 |          STORE X           /Initialize loop control variable X
+102 1111 |  Loop    LOAD X            /Load X
+103 4113 |          SUBT Ten          /Compare X to 10
+104 8000 |          SKIPCOND 000      /If AC<0 (X is less than 10), continue loop
+105 910D |          JUMP Endloop      /If X is not less than 10, terminate loop
+106 1110 |          LOAD Sum           
+107 3111 |          ADD X             /Add X to Sum
+108 2110 |          STORE Sum         /Store result in Sum
+109 1111 |          LOAD X             
+10A 3112 |          ADD One           /Increment X
+10B 2111 |          STORE X            
+10C 9102 |          JUMP Loop          
+10D 1110 |  Endloop LOAD Sum           
+10E 6000 |          OUTPUT            /Print Sum
+10F 7000 |          HALT              /terminate program
+110 0000 |  Sum     DEC 0              
+111 0000 |  X       DEC 0             /Storage for X
+112 0001 |  One     DEC 1             /The constant value 1
+113 000A |  Ten     DEC 10            /The loop constant
+         |          END                
+
+Assembly successful.
+
+         SYMBOL TABLE
+         ---------------------------------------------------
+          Symbol  | Defined | References 
+         ---------+---------+-------------------------------
+          Endloop |   10D   | 105
+          Loop    |   102   | 10C
+          One     |   112   | 100, 10A
+          Sum     |   110   | 106, 108, 10D
+          Ten     |   113   | 103
+          X       |   111   | 101, 102, 107, 109, 10B
+         ---------------------------------------------------
+
+
