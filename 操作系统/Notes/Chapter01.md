@@ -1,8 +1,8 @@
 # Chapter_01
 
-教授：熊运余
-
 2023.09.07
+
+教授：熊运余
 
 
 
@@ -37,7 +37,7 @@
 
 ## 1.1 Basic Elements
 
-* **Processor ** (处理器)
+* **Processor ** (处理器) <img align="right" src="./image/Lec01/Figure1.1.png" alt="Figure1.1" style="zoom:60%;" />
 * **Main Memory** (内存)
   * Volatile (易失性)
   * Referred to as real memory (实存) or primary memory (主存).
@@ -47,8 +47,6 @@
   * terminals
 * **System bus** (系统总线)
   * Communication among processors, memory, and I/O modules
-
-<img src="./image/Lec01/Figure1.1.png" alt="Figure1.1" style="zoom:60%;" />
 
 
 
@@ -142,7 +140,7 @@
 
 #### 1.4.1 Interrupts and the Instruction Cycle
 
-<img src="./image/Lec01/Figure1.6.png" alt="Figure1.6" style="zoom:30%;" /><img src="./image/Lec01/Figure1.7.png" alt="Figure1.7" style="zoom:45%;" />
+<img src="./image/Lec01/Figure1.6.png" alt="Figure1.6" style="zoom:30%;" /><img src="./image/Lec01/Figure1.7.png" alt="Figure1.7" style="zoom:42%;" />
 
 #### 1.4.2 Interrupt Processing
 
@@ -181,13 +179,13 @@
     * **Level 1**：板上存储器
     * **Level 2**：板外存储器
     * **Level 3**：离线存储器
-  * **Going Down the Hierarchy** 
+  * **Going Down the Hierarchy** <img align="right" src="./image/Lec01/Figure1.14.png" alt="Figure1.14" style="zoom:60%;" />
     * Increasing capacity
     * Increasing access time   (that is slow speed)
     * Decreasing cost per bit
     * Decreasing frequency of access of the memory by the processor
 
-<img src="./image/Lec01/Figure1.14.png" alt="Figure1.14" style="zoom:60%;" />
+
 
 * **Obtaining larger and faster memory**:
   * **Get larger capacity**
@@ -224,25 +222,22 @@
 ## 1.7 I/O Communication Techniques
 
 * **Three methods**:
-
   * Programmed I/O
   * Interrupt-Driven I/O
   * Direct Memory Access / DMA
-
+  
 * **<font color = blue>Method1</font>: Programmed I/O** (可编程I/O)
 
   * I/O module performs the action, not the processor
   * I/O module sets appropriate bits in the I/O status register
   * Processor checks status until operation is complete
   * **<font color = blue>Disadvantage</font>**: It is a time-consuming process that keeps the processor busy needlessly.
-
 * **<font color = blue>Method2</font>: Interrupt-Driven I/O** 
-
   * Processor is interrupted when I/O module ready to exchange data
   * Processor saves context of program executing and begins executing interrupt-handler
   * **<font color = blue>Advantage</font>**: No needless waiting, so more efficient than programmed I/O
   * **<font color = blue>Disadvantage</font>**: Still consumes a lot of processor time, because every word read or written passes through the processor.
-
+  
 * **<font color = blue>Method3</font>: Direct Memory Access** 
 
   * Transfers a block of data directly to or from memory, I/O exchanges occur directly with memory
