@@ -254,9 +254,193 @@ public:
   
   ```
 
+
+
+# Lec04
+
+教授：李晓华
+
+2023.09.20
+
+--------
+
 #### 4.1.3 Linked list
 
+* **Linked list** (链表)
+
+  * **Feature**:
+
+    * 每个元素（表项）由结点构成
+
+    * 结点可以不连续存储
+
+    * 表可以扩充
+
+  * **Components**:
+
+    两个类表达链表：
+
+    * 链表结点类: Link
+    * 链表类: LList
+
+    ```cpp
+    #ifndef TEST_LLIST_H
+    #define TEST_LLIST_H
+    
+    #include <cassert>
+    
+    template<typename E>
+    class Link {
+    public:
+        // Value for this node
+        E element;
+    
+        // Pointer to next node in list
+        Link *nextVal;
+    
+        // constructors
+        Link(const E &element, Link *nextVal = nullptr) {
+            this->element = element;
+            this->nextVal = nextVal;
+        }
+    
+        Link(Link *nextVal = nullptr) {
+            this->nextVal = nextVal;
+        }
+    };
+    
+    template<typename E>
+    class LList {
+    public:
+        LList() {
+            init();
+        }
+    
+        // Clear contents from the list, to make it empty.
+        void clear() {
+            delete headNode;
+            init();
+        };
+    
+        // Insert an element at the current location.
+        // item: The element to be inserted
+        void insert(const E &item) {
+            Link<E> tempNode = new Link<E>(item, currNode->nextVal);
+            currNode->nextVal = tempNode;
+            size++;
+        };
+    
+        // Append an element at the end of the list.
+        // item: The element to be appended.
+        void append(const E &item) {
+            tailNode->nextVal = new Link<E>(item);
+            tailNode = tailNode->nextVal;
+            size++;
+        };
+    
+        // Remove and return the current element.
+        // Return: the element that was removed.
+        E remove() {
+            if (currNode->nextVal == nullptr) {
+                assert("No element!");
+            }
+            Link<E> *nodeToRemove = currNode->nextVal;
+            E retVal = nodeToRemove->element;
+            currNode->nextVal = nodeToRemove->nextVal;
+            nodeToRemove->nextVal = nullptr;
+            delete nodeToRemove;
+    
+            size--;
+            return retVal;
+        };
+    
+        // Set the current position to the start of the list
+        void moveToStart() {
+            currNode = headNode;
+        };
+    
+        // Set the current position to the end of the list
+        void moveToEnd() {
+            currNode = tailNode;
+        };
+    
+        // Move the current position one step left. No change
+        // if already at beginning.
+        void prev() {
+            Link<E> *tempNode = headNode;
+            while (tempNode->nextVal != currNode) {
+                tempNode = tempNode->nextVal;
+            }
+            currNode = tempNode;
+        };
+    
+        // Move the current position one step right. No change
+        // if already at end.
+        void next() {
+            currNode = currNode->nextVal;
+        };
+    
+        // Return: The number of elements in the list.
+        int length() {
+            return size;
+        };
+    
+        // Return: The position of the current element.
+        int currPos() {
+            Link<E> *tempNode = headNode;
+            int cnt = 0;
+            while (tempNode != currNode) {
+                tempNode = tempNode->nextVal;
+                cnt++;
+            }
+            return cnt;
+        };
+    
+        // Set current position.
+        // pos: The position to make current.
+        void moveToPos(int pos) {
+            currNode = headNode;
+            for (int i = 0; i < pos; ++i) {
+                currNode = currNode->nextVal;
+            }
+        }
+    
+        // Return: The current element.
+        const E &getValue() {
+            return currNode->nextVal->element;
+        };
+    
+    private:
+        // headnode
+        Link<E> *headNode;
+        // tailnode
+        Link<E> *tailNode;
+        // current node
+        Link<E> *currNode;
+        // counter
+        int size;
+    
+        // Initialize the whole class instance.
+        void init() {
+            this->headNode = new Link<E>();
+            this->tailNode = headNode;
+            this->currNode = headNode;
+            size = 0;
+        }
+    };
+    
+    #endif //TEST_LLIST_H
+    
+    ```
+
+  * **Complexity**:
+    * 插入
+
 #### 4.1.4 Freelists
+
+* Why *FreeLists*?
+  * System **<font color=red>new</font>** and **<font color=red>delete</font>** operations are slow.
+  * **freeList**: speeding **<font color=red>new</font>** and **<font color=red>delete</font>** operations.
 
 #### 4.1.5 Double linked list
 
