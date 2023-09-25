@@ -19,23 +19,37 @@
 
 
 
-# $\S$2. Data Representation in Computer Science
-
-
-
 # $\S$4. MARIE: An Introduction to a Simple Computer
 
-## 4.1
+## 4.1 Introduction
+
+
+
+## 4.2 CPU Basics
+
+* The computer’s CPU fetches, decodes, and executes program instructions.
+* The two principal parts of the CPU are the *<font color = blue>datapath</font>* and the *<font color=blue>control unit</font>*.
+  * The datapath consists of an arithmetic-logic unit and storage units (registers) that are interconnected by a data bus that is also connected to main memory.
+  * Various CPU components perform sequenced operations according to signals provided by its control unit.
+
+
 
 ## 4.3 The Bus
 
-* **Bus arbitration**:
+* **Bus components**
+  * Buses consist of <font color=blue>data</font> lines, <font color=blue>control</font> lines, and <font color=blue>address</font> lines.
+  * While the <font color=blue>data lines</font> convey bits from one device to another, <font color=blue>control lines</font> determine the direction of data flow, and when each device can access the bus.
+  * <font color = blue>Address lines</font> determine the location of the source or destination of the data.
+
+<img src="/Users/chris/Documents/Courses/Fall2023/计算机组成和体系结构/Notes/img/Chapter04/Fig4.2.png" alt="截屏2023-09-25 13.51.06" style="zoom:50%;" />
+
+* **Bus arbitration** (仲裁)
 
   * In systems with more than one master device, **bus arbitration** is required. 
 
   * Bus arbitration schemes must provide priority to certain master devices and, at the same time, make sure lower priority devices are not starved out.
 
-  * **Catagories**:
+  * **Four catagories**:
 
     **(1) Daisy chain arbitration**
 
@@ -111,14 +125,14 @@
 
       * Array elements are sequential.
 
-      ![Fig4.6](/Users/chris/Documents/Courses/Fall2023/计算机组成和体系结构/Notes/img/Fig4.6.png)
+      <img src="./img/chapter04/Fig4.6.png" alt="Fig4.6" style="zoom:50%;" />
 
     * **Low-order interleaving**: The low-order bits of the address are used to select the bank.
 
       * Array elements are not sequential. (每个Module 中的Element 并不连续，理论上写入更快)
       * We can access the array elements in parallel because each array element is in a different module.
 
-      ![Fig4.7](/Users/chris/Documents/Courses/Fall2023/计算机组成和体系结构/Notes/img/Fig4.7.png)
+      <img src="./img/Chapter04/Fig4.7.png" alt="Fig4.7" style="zoom:50%;" />
 
 ## 4.7 Interrupts
 
@@ -134,51 +148,178 @@
     * **maskable**: can be disabled or ignored.
     * **nonmaskable**: a high-priority interrupt that cannot be disabled and must be acknowledged
 
+
+
 ## MARIE
 
 * MARIE (**M**achine **A**rchitecture that is **R**eally **I**ntuitive and **E**asy), is a simple architecture consisting of **memory** and a **CPU**.
 
 #### 4.8.1 Architecture
 
-* **Characteristics**:
-
-  * Binary, two’s complement
-
+* **Components**
+* Binary, 2’s complement
   * Stored program, fixed word length
-
-  * Word (but not byte) addressable
-
+* Word (but not byte) addressable
   * 4K words of main memory (this implies 12 bits per address) 
-
-  * 16-bit data (words have 16 bits)
-
+* 16-bit data (words have 16 bits)
   * 16-bit instructions: 4 for the opcode and 12 for the address
+* **Seven registers** =>
 
-  * **Seven registers**:
-
-    * A 16-bit accumulator (AC)
-
-    * A 16-bit instruction register (IR)
-
-    * A 16-bit memory buffer register (MBR)
-
-    * A 12-bit program counter (PC)
-
-    * A 12-bit memory address register (MAR)
-
-    * An 8-bit input register
-
-    * An 8-bit output register
+<img src="./img/Chapter04/Fig4.8.png" alt="Fig4.8" style="zoom:40%;" />
 
 #### 4.8.2 Registers and Buses
 
-* **AC:** The **accumulator**, which holds data values. This is a **general-purpose register,** and it holds data that the CPU needs to process. Most computers today have multiple general-purpose registers.
-*  **MAR:** The **memory address register**, which holds the memory address of the data being referenced.
-* **MBR:** The **memory buffer register**, which holds either the data just read from memory or the data ready to be written to memory.
-* **PC:** The **program counter**, which holds the address of **<font color = blue>the next instruction</font>** to be executed in the program.
-* **IR:** The **instruction register**, which holds the next instruction to be executed.
-* **InREG:** The **input register**, which holds data from the input device.
-* **OutREG:** The **output register**, which holds data for the output device.
+* => **Seven registers**:
+
+  * Accumulator, <font color=blue>AC</font> <img src="./img/Chapter04/Fig4.9.png" align="right" alt="Fig4.9" style="zoom:40%;" />
+
+    <font color=grey>A 16-bit register that holds a conditional operator (e.g., "less than") or one operand of a two-operand instruction.</font>
+
+  * Memory address register, <font color=blue>MAR</font>
+
+    <font color=grey>A 12-bit register that holds the memory address of an instruction or the operand of an instruction.</font>
+
+  * Memory buffer register, <font color=blue>MBR</font>
+
+    <font color=grey>A 16-bit register that holds the data after its retrieval from, or before its placement in memory.</font>
+
+  * Program counter, <font color=blue>PC</font>
+
+    <font color=grey>A 12-bit register that holds the address of the next program instruction to be executed.</font>
+
+  * Instruction register, <font color=blue>IR</font>
+
+    <font color=grey>Which holds an instruction immediately preceding its execution.</font>
+
+  * Input register, <font color=blue>InREG</font>
+
+    <font color=grey>An 8-bit register that holds data read from an input device.</font>
+
+  * Output register, <font color=blue>OutREG</font>
+
+    <font color=grey>An 8-bit register, that holds data that is ready for the output device.</font>
+
+#### 4.8.3 Instruction Set Architecture
+
+* **Instruction Set Architecture** (ISA)
+  * An ISA specifies the format of its instructions and the primitive operations that the machine can perform.
+  * The ISA is an <font color=red>interface</font> between a computer’s <font color=blue>hardware</font> and <font color=blue>software</font>.
+  * Some ISAs include hundreds of different instructions for processing data and controlling program execution.
+  * The MARIE ISA consists of only thirteen instructions.
+* **MARIE instruction format**:
+
+<img src="./img/Chapter04/Fig4.10.png" alt="Fig4.10" style="zoom:50%;" />
+
+* **Fundamental MARIE instructions**:
+
+<img src="./img/Chapter04/Tab4.2.png" alt="Fig4.2" style="zoom:50%;" />
+
+#### 4.8.4 Register Transfer Notation
+
+* **Microoperations**
+
+  * Each of our instructions actually consists of a sequence of smaller instructions called **microoperations**.
+  * The exact sequence of microoperations that are carried out by an instruction can be specified using **register transfer language** (RTL).
+
+* **Register Transfer Language** (RTL)
+
+  * In the MARIE RTL, we use the notation $M[X]$ to indicate the actual data value stored in memory location $X$, and $\leftarrow$ to indicate the transfer of bytes to a register or memory location.
+
+  * RTL for the $LOAD$ instruction:
+    $$
+    \begin{aligned}
+    	& \rm{MAR\ \leftarrow\ X}\\
+    	& \rm{MBR\ \leftarrow\ M[MAR]}\\	
+    	& \rm{AC\ \leftarrow\ MBR}
+    \end{aligned}
+    $$
+
+  * RTL for the $ADD$ instruction:
+    $$
+    \begin{aligned}
+    	& \rm{MAR\ \leftarrow\ X}\\
+    	& \rm{MBR\ \leftarrow\ M[MAR]}\\	
+    	& \rm{AC\ \leftarrow\ AC + MBR}
+    \end{aligned}
+    $$
+
+  * RTL for the $SKIPCOND$ instruction:
+    $$
+    \begin{aligned}
+    	& \rm{If\ IR[11-10]\ =\ 00\ then}\\
+    	& \ \ \ \ \ \ \ \rm{If\ AC < 0\ then\ PC\leftarrow PC + 1}\\
+    	& \rm{else\ If\ IR[11-10]\ =\ 01\ then}\\
+    	& \ \ \ \ \ \ \ \rm{If\ AC = 0\ then\ PC\leftarrow PC + 1}\\
+    	& \rm{else\ If\ IR[11-10]\ =\ 11\ then}\\
+    	& \ \ \ \ \ \ \ \rm{If\ AC > 0\ then\ PC\leftarrow PC + 1}
+    \end{aligned}
+    $$
 
 
 
+## 4.9 INSTRUCTION PROCESSING
+
+#### 4.9.1 The Fetch–Decode–Execute Cycle
+
+* **Fetch-decode-execute Cycle**<img src="./img/Chapter04/Fig4.11.png" align="right" alt="Fig4.10" style="zoom:25%;" />
+  * **Def**: The fetch-decode-execute cycle is the series of steps that a computer carries out when it runs a program.
+  * **Steps**:
+    * We first have to fetch an instruction from memory, and place it into the IR.
+    * Once in the IR, it is decoded to determine what needs to be done next.
+    * If a memory value (operand) is involved in the operation, it is retrieved and placed into the MBR.
+    * With everything in place, the instruction is executed.
+
+#### 4.9.2 Interrupts and the Instruction Cycle
+
+* **Interrupts**
+  * All computers provide a way of interrupting the fetch-decode-execute cycle.<img src="./img/Chapter04/Fig4.12.png" alt="Fig4.12" align="right" style="zoom:35%;" />
+  * Interrupts occur when:
+    * A user break (e.,g., Control+C) is issued
+    * I/O is requested by the user or a program
+    * A critical error occurs
+  * Interrupts can be caused by hardware or software.
+    * Software interrupts are also called traps.
+* **Maskable** & **Nonmaskable**
+  * **Maskable**: Interrupts can ignored.
+  * **Nonmaskable** interrupts are those interrupts that must be processed in order to keep the system in a stable condition.
+
+#### **4.9.3 MARIE’s I/O**
+
+* I/O processing is one of the most challenging aspects of computer system design and programming. 
+* Our model is necessarily simplified, and we provide it at this point only to complete MARIE’s functionality.
+
+
+
+## 4.10 A SIMPLE PROGRAM
+
+<img src="./img/Chapter04/Tab4.3.png" alt="Fig4.2" style="zoom:50%;" />
+
+<img src="./img/Chapter04/Fig4.13.png" alt="Fig4.14" style="zoom:43%;" />
+
+## 4.11 A DISCUSSION ON ASSEMBLERS
+
+#### 4.11.1 What Do Assemblers Do?
+
+* **Assembler**
+
+  - Mnemonic instructions, such as LOAD 104, are easy for humans to write and understand.
+
+  - They are impossible for computers to understand.
+
+  - Assemblers translate instructions that are comprehensible to humans into the machine language that is comprehensible to computers
+    - We note the distinction between an assembler and a compiler: In assembly language, there is a <font color=blue>one-to-one</font> correspondence between a mnemonic instruction and its machine code. With compilers, this is not usually the case.
+
+……
+
+
+
+## Extending Our Instruction Set
+
+* **Indirect addressing**:
+  * **Def**: 
+    * Instead of using the value found at location *X* as the actual address, we use the value found in *X* as a pointer to a new memory location that contains the data we wish to use in the instruction.
+    * i.e., the <font color=blue>address of the address</font> of the operand is given in the instruction.
+
+<img src="./img/Chapter04/Tab4.6.png" alt="Tab4.6" style="zoom:50%;" />
+
+<img src="./img/Chapter04/Tab4.7.png" alt="Tab4.7" style="zoom:50%;" />
