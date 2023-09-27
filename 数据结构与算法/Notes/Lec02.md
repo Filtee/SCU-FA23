@@ -6,6 +6,10 @@
 
 
 
+[TOC]
+
+
+
 ----
 
 ## $\S$0. C++ Review
@@ -444,7 +448,36 @@ public:
 
 #### 4.1.5 Double linked list
 
+…….
 
+
+
+### 4.2 Stack
+
+* **Stack**:
+  * **Feature**: 
+    * $\rm{LIFO\ List}:\ Last\ In,\ First\ out$
+    * Restricted form of list:
+      * Insert and remove only at front of list.
+  * **Notation**:
+    * Insert: Push
+    * Remove: Pop
+    * the accessible element is called TOP.
+
+
+
+### 4.3 Queue
+
+* **Queue**:
+  * **Feature**: 
+    * $\rm{FIFO\ List}:\ First\ In,\ First\ out$
+    * Restricted form of list:
+      * Insert at one end, and remove the other end.
+  * **Notation**:
+    * Insert: Enqueue
+    * Remove: Dequeue
+    * First element: Front
+    * Last element: Rear
 
 
 
