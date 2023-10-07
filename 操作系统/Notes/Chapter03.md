@@ -1,24 +1,10 @@
-# Chapter03
+# $\S$3. Process Description and Control
 
 2023.09.21 / 2023.09.28
 
 教授：熊运余
 
 [TOC]
-
-# $\S$3. Process Description and Control
-
-* **3.1 What is a Process**
-
-* **3.2 Process States**
-
-* **3.3 Process Description** 
-
-* **3.4 Process Control**
-
-* **3.5 Execution of the Operating System**
-
-* **3.6 process API introduction**
 
 -------
 
@@ -46,7 +32,7 @@
 
   * Contains the process elements
   * Created and manage by the operating system
-  * Allows support for multiple processes进程派生进程，父子进程关系
+  * Allows support for multiple processes 进程派生进程，父子进程关系
 
 
 
@@ -62,7 +48,7 @@
 
 ----------
 
-#### 3.2.1 Trace of the Process
+### 3.2.1 Trace of the Process
 
 * **Trace of Process** (进程轨迹) 
   * Sequence of instruction that execute for a process
@@ -70,10 +56,11 @@
 
 <img src="./image/Chapter03/Fig3.2.png" alt="Figure3.2" style="zoom:80%;"> <img src="./image/Chapter03/Fig3.4.png" alt="Figure3.2" style="zoom:70%;" />
 
-#### 3.2.2 A Two-State Process Model
+------------
 
-* Process may be in one of two states
+### 3.2.2 A Two-State Process Model
 
+* **Process may be in one of two states**
   * Running
   * Not-running
 
@@ -81,9 +68,13 @@
 
 <img src="./image/Chapter03/Fig3.5b.png" alt="Figure3.5b" style="zoom:47%;">
 
-#### 3.2.3 The Creation and Temination
+------------
 
-#### 3.2.4 A Five-State Model
+### 3.2.3 The Creation and Temination
+
+----------
+
+### 3.2.4 A Five-State Model
 
 * **A Five-State Model**
   * Running (运行态)
@@ -116,19 +107,21 @@
     * Blocked / Suspend
     * Ready / Suspend
 
-
+<img src="./image/Chapter03/Fig3.9.png" alt="Figure3.9" style="zoom:70%;">
 
 -----------
 
 ## 3.3 Process Description
 
-* 3.3.1 Process and Resources
-* 3.3.2 Operating System Control Structures
-* 3.3.3 Process Control Structures
+* **3.3.1 Process and Resources**
+* **3.3.2 Operating System Control Structures**
+* **3.3.3 Process Control Structures**
 
 ----------
 
-#### 3.3.1Process and Resources
+#### 3.3.1 Process and Resources
+
+---------
 
 #### 3.3.2 Operating System Control Structures
 
@@ -154,6 +147,8 @@
   * Location on secondary memory
   * Current Status
   * Attributes
+
+----------
 
 #### 3.3.3 Process Control Structures
 
@@ -196,13 +191,102 @@
   * Less-privileged mode
   * User programs typically execute in this mode
 * **System mode**, **control mode**, or **kernel mode**
-* More-privileged modeKernel of the operating systemTranslation between the two model
-* Processor status register (psr) and current privileged level (cpl
-* User mode >System mode
-  System mode >User mode
+  * More-privileged modeKernel of the operating systemTranslation between the two model
+  * Processor status register (psr) and current privileged level (cpl
+    * User mode > System mode
+    * System mode > User mode
+
+--------
 
 #### 3.4.2 Process Creation
 
+1. **Assign a unique process identifier**
+
+2. **Allocate space for the process**
+
+3. **Initialize process control block**
+
+4. **Set up appropriate linkages**
+
+   Ex: add new process to linked list used for scheduling queue
+
+5. **Create of expand other data structures**
+
+   Ex: maintain an accounting file
+
+-------
+
 #### 3.4.3 Process Switching
 
+* **When to switch a process**
+
+  * A process switch may occur any time that the OS has gained control from the currently running process. The possible events that may give control to the OS include:
+
+    1. **Interrupt**
+
+       * Clock interrupt
+
+         process has executed for the maximum allowable time slice
+
+       * I/O interrupt
+
+       * Memory fault
+
+         Referenced virtual address is not in main memory, so it must be brought in.
+
+    2. **Trap**
+
+       * error or exception occurred
+       * May cause process to be moved to Exit state
+
+    3. **Supervisor call** (System Call)
+
+       * such as file open
+
+* **How to switch a process**
+
+  1. Save context of processor including program counter and other registers
+  2. Update the process control block of the process and change the process’s state that is currently in the Running state
+  3. Move process control block to appropriate queue – ready; blocked; ready/suspend
+  4. Select another process for execution
+  5. Update the process control block of the process selected and change it state
+  6. Update memory-management data structures
+  7. Restore context of the selected process
+
+---------
+
 #### 3.4.4 Execution of the Operating System
+
+* **Non-process Kernel** (无进程内核)
+  * Execute kernel outside of any process
+  * Operating system code is executed as a separate entity that operates in privileged mode
+
+<img src="./image/Chapter03/Fig3.17a.png" alt="Figure3.17" style="zoom:50%;">
+
+* **Execution Within User Processes** (在用户进程中执行)
+  * Operating system software within context of a user process
+  * Process executes in privileged mode when executing operating system code
+  * Unix
+
+<img src="./image/Chapter03/Fig3.17b.png" alt="Figure3.17" style="zoom:50%;">
+
+* **Process-Based Operating System**（基于进程的OS）
+  * Implement operating system as a collection of system processes
+  * Useful in multi-processor or multi-computer environment
+
+<img src="./image/Chapter03/Fig3.17c.png" alt="Figure3.17" style="zoom:50%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

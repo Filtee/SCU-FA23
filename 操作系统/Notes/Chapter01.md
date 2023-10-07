@@ -1,17 +1,12 @@
-# Chapter_01
+# $\S$0. Introduction
 
 2023.09.07
 
 教授：熊运余
 
-
-
 [TOC]
 
-# $\S$0. Introduction
-
 * **Operating system**:
-
   * An interface between application and hardware.
 
   * A program that controls the execution of application programs.
@@ -37,7 +32,7 @@
 
 ## 1.1 Basic Elements
 
-* **Processor ** (处理器) <img align="right" src="./image/Lec01/Figure1.1.png" alt="Figure1.1" style="zoom:60%;" />
+* **Processor ** (处理器) <img align="right" src="./image/Chapter01/Figure1.1.png" alt="Figure1.1" style="zoom:60%;" />
 * **Main Memory** (内存)
   * Volatile (易失性)
   * Referred to as real memory (实存) or primary memory (主存).
@@ -114,7 +109,7 @@
   * **Instruction Register** (**IR**) contains the instruction most recently fetched.
   * **Program counter (PC) of CPU is incremented after each fetch.**
 
-<img src="./image/Lec01/Figure1.3.png" alt="Figure1.3" style="zoom:45%;" /><img src="./image/Lec01/Figure1.4.png" alt="Figure1.4" style="zoom:45%;" />
+<img src="./image/Chapter01/Figure1.3.png" alt="Figure1.3" style="zoom:45%;" /><img src="./image/Chapter01/Figure1.4.png" alt="Figure1.4" style="zoom:45%;" />
 
 
 
@@ -122,7 +117,7 @@
 
 ## 1.4 Interrupts
 
-#### 1.4.0 Interrupt Introduction
+### 1.4.0 Interrupt Introduction
 
 * **Why Interrupt in computer system?**
   * Most I/O devices are slower than the processor, so interrupt can improve CPU’s utilization (提高 CPU 利用率)
@@ -136,28 +131,32 @@
   * **Interrupt** and **Restore / Resume**: 中断和恢复
     * **Both software and hardware** are used to support it.
 
+---------
 
+### 1.4.1 Interrupts and the Instruction Cycle
 
-#### 1.4.1 Interrupts and the Instruction Cycle
+<img src="./image/chapter01/Figure1.6.png" alt="Figure1.6" style="zoom:30%;" /><img src="./image/Chapter01/Figure1.7.png" alt="Figure1.7" style="zoom:42%;" />
 
-<img src="./image/Lec01/Figure1.6.png" alt="Figure1.6" style="zoom:30%;" /><img src="./image/Lec01/Figure1.7.png" alt="Figure1.7" style="zoom:42%;" />
+-------
 
-#### 1.4.2 Interrupt Processing
+### 1.4.2 Interrupt Processing
 
-<img src="./image/Lec01/Figure1.10.png" alt="Figure1.7" style="zoom:50%;" />
+<img src="./image/chapter01/Figure1.10.png" alt="Figure1.7" style="zoom:50%;" />
 
+---------
 
-
-#### 1.4.3 Multiple Interrupts
+### 1.4.3 Multiple Interrupts
 
 * **Method 1**: **Sequential interrupt processing**  <font color = blue>Disable interrupts while an interrupt is being processed.</font>
 * **Method 2**: **Nested interrupt processing** <font color = blue>Define priorities for interrupts.</font>
 
-<img src="./image/Lec01/Figure1.13a.png" alt="Figure1.13a" style="zoom:45%;" /><img src="./image/Lec01/Figure1.13b.png" alt="Figure1.13b" style="zoom:40%;" />
+<img src="./image/Chapter01/Figure1.13a.png" alt="Figure1.13a" style="zoom:45%;" /><img src="./image/Chapter01/Figure1.13b.png" alt="Figure1.13b" style="zoom:40%;" />
 
-<img src="./image/Lec01/Figure1.13.png" alt="Figure1.13" style="zoom:45%;" />
+<img src="./image/Chapter01/Figure1.13.png" alt="Figure1.13" style="zoom:45%;" />
 
-#### 1.4.4 Multiprogramming
+--------
+
+### 1.4.4 Multiprogramming
 
 * Multiprogramming (多道程序)
   * If the time required to complete an I/O operation is much greater than the user code between I/O calls, then the processor will be idle much of the time.
@@ -179,7 +178,7 @@
     * **Level 1**：板上存储器
     * **Level 2**：板外存储器
     * **Level 3**：离线存储器
-  * **Going Down the Hierarchy** <img align="right" src="./image/Lec01/Figure1.14.png" alt="Figure1.14" style="zoom:60%;" />
+  * **Going Down the Hierarchy** <img align="right" src="./image/Chapter01/Figure1.14.png" alt="Figure1.14" style="zoom:60%;" />
     * Increasing capacity
     * Increasing access time   (that is slow speed)
     * Decreasing cost per bit
@@ -205,7 +204,7 @@
 * **Exploit the <font color = blue>principle of locality</font>**:
   * Add something to cache between fast and slow memory
 
-<img src="./image/Lec01/Figure1.16.png" alt="Figure1.16" style="zoom:45%;" /><img src="./image/Lec01/Figure1.16b.png" alt="Figure1.16b" style="zoom:40%;" />
+<img src="./image/Chapter01/Figure1.16.png" alt="Figure1.16" style="zoom:45%;" /><img src="./image/Chapter01/Figure1.16b.png" alt="Figure1.16b" style="zoom:40%;" />
 
 * **Cache Principles** 
   * Contains a copy of a portion of main memory
@@ -213,7 +212,7 @@
     * <font color = blue>(Hit)</font> If found, just use it. And do not need access to the memory
     * <font color = blue>(Miss)</font> If not found in cache, the block of memory containing the needed information is moved to the cache and delivered to the processor
 
-<img src="./image/Lec01/Figure1.18.png" alt="Figure1.18" style="zoom:50%;" />
+<img src="./image/Chapter01/Figure1.18.png" alt="Figure1.18" style="zoom:50%;" />
 
 
 
@@ -247,4 +246,4 @@
 
   * **<font color = blue>Advantage</font>** the processor responsibility for the exchange 
 
-<img src="./image/Lec01/Figure1.18a.png" alt="Figure1.18a" style="zoom:60%;" /><img src="./image/Lec01/Figure1.18b.png" alt="Figure1.18b" style="zoom:60%;" /><img src="./image/Lec01/Figure1.18c.png" alt="Figure1.18c" style="zoom:50%;" />
+<img src="./image/Chapter01/Figure1.18a.png" alt="Figure1.18a" style="zoom:60%;" /><img src="./image/Chapter01/Figure1.18b.png" alt="Figure1.18b" style="zoom:60%;" /><img src="./image/Chapter01/Figure1.18c.png" alt="Figure1.18c" style="zoom:50%;" />
