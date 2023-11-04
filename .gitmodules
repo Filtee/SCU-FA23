@@ -1,3 +1,6 @@
 [submodule "操作系统/Lab/SCU-NachOS"]
 	path = 操作系统/Lab/SCU-NachOS
 	url = git@github.com:Filtee/SCU-NachOS.git
+[submodule "数据结构与算法/Lab"]
+	path = 数据结构与算法/Lab
+	url = git@github.com:Filtee/SCU-DALabs.git
