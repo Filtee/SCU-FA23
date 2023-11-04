@@ -1,0 +1,3 @@
+[submodule "操作系统/Lab/SCU-NachOS"]
+	path = 操作系统/Lab/SCU-NachOS
+	url = git@github.com:Filtee/SCU-NachOS.git
