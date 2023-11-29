@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/chris/Documents/Course/FA23/操作系统/Lab/SCU-NachOS/code/threads",
+      "program": "/Users/chris/Documents/Course/FA23/操作系统/Lab/SCU-NachOS/code/threads/build/Debug/outDebug"
+    }
+  ]
+}
