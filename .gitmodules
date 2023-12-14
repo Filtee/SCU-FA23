@@ -3,4 +3,4 @@
 	url = git@github.com:Filtee/SCU-NachOS.git
 [submodule "数据结构与算法/李晓华/Lab"]
 	path = 数据结构与算法/李晓华/Lab
-	url = git@github.com:Filtee/SCU-DSLabs.git
+	url = git@github.com:Filtee/SCU-DSLab.git
